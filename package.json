@@ -1,0 +1,28 @@
+{
+  "name": "url-shortener",
+  "version": "0.0.1",
+  "author": {
+    "name": "Louis Chatriot",
+    "email": "louis.chatriot@gmail.com"
+  },
+  "contributors": [
+    "Louis Chatriot"
+  ],
+  "description": "Small URL shortener",
+  "keywords": [
+    "url",
+    "shortener"
+  ],
+  "homepage": "https://github.com/louischatriot/nedb",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:louischatriot/nedb.git"
+  },
+  "dependencies": {
+    "express": "^4.10.0",
+    "nedb": "^0.11.1"
+  },
+  "scripts": {},
+  "main": "index",
+  "licence": "MIT"
+}
