@@ -7,7 +7,7 @@ $('#create-url').on('click', function (event) {
 
   event.preventDefault();
 
-  $.ajax({ url: '/api/urls'
+  $.ajax({ url: '/api/mappings'
          , type: 'POST'
          , data: JSON.stringify(newUrl)
          , dataType: 'json'
