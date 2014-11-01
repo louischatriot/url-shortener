@@ -20,11 +20,7 @@ app.post('/api/mappings', mappings.createUrl);
 // Web interface
 webapp.use(middlewares.mustBeLoggedIn);
 webapp.get('/create-mapping', function (req, res) {
-  res.render('pages/create-mapping.jade', function (err, res) {
-    console.log(err);
-    console.log(res);
-  });
-  //res.sendFile(path.join(process.cwd(), 'pages/create-mapping.html'));
+  res.render('create-mapping.jade', { youAreUsingJade: true });
 });
 app.use('/web', webapp);
 
