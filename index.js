@@ -5,12 +5,19 @@ var express = require('express')
   , mappings = require('./lib/mappings')
   , config = require('./lib/config')
   , path = require('path')
+  , session = require('express-session')
   , middlewares = require('./lib/middlewares')
   , webapp = express.Router()
   ;
 
-// Initialize Express server and Express Group Handlers
+// Initialize Express server and session
+// Right now the session store is a simple in memory key value store and gets erased
+// on restart. If needed I'll create a Nedb-backed one
 app.use(bodyParser.json());
+app.use(session({ secret: 'eropcwnjdi'
+                , resave: true
+                , saveUninitialized: true
+                }));
 
 
 // API
