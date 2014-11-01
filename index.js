@@ -19,8 +19,13 @@ app.post('/api/mappings', mappings.createUrl);
 
 // Web interface
 webapp.use(middlewares.mustBeLoggedIn);
-webapp.get('/create-mapping', function (req, res) {
+webapp.use(middlewares.addPageName);
+webapp.get('/create', function (req, res) {
+  res.locals.hw = 'Hello Wrold';
   res.render('create-mapping.jade', { youAreUsingJade: true });
+});
+webapp.get('/list', function (req, res) {
+  res.render('list.jade', { youAreUsingJade: true });
 });
 app.use('/web', webapp);
 
