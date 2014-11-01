@@ -1,5 +1,5 @@
 
-$('#create-url').on('click', function (event) {
+$('#create-mapping').on('click', function (event) {
   var from = $('#from').val()
     , to = $('#to').val()
     , newUrl = { from: from, to: to }
