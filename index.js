@@ -5,17 +5,24 @@ var express = require('express')
   , mappings = require('./lib/mappings')
   , config = require('./lib/config')
   , path = require('path')
+  , middlewares = require('./lib/middlewares')
+  , webapp = express.Router()
   ;
 
-// Initialize Express server
+// Initialize Express server and Express Group Handlers
 app.use(bodyParser.json());
+
 
 // API
 app.get('/api/mappings/list', mappings.showAllUrls);
 app.post('/api/mappings', mappings.createUrl);
 
 // Web interface
-app.get('/create-mapping', function (req, res) { res.sendFile(path.join(process.cwd(), 'pages/create-mapping.html')); });
+webapp.use(middlewares.mustBeLoggedIn);
+webapp.get('/create-mapping', function (req, res) {
+  res.sendFile(path.join(process.cwd(), 'pages/create-mapping.html'));
+});
+app.use('/web', webapp);
 
 // Serve static client-side js and css (should really be done through Nginx but at this scale we don't care)
 app.get('/assets/*', function (req, res) {
