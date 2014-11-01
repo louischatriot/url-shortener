@@ -8,9 +8,7 @@ var express = require('express')
   , session = require('express-session')
   , middlewares = require('./lib/middlewares')
   , webapp = express.Router()
-  , google = require('googleapis')
-  , OAuth2 = google.auth.OAuth2
-  , creds = require('./gauth')
+  , login = require('./lib/login')
   ;
 
 // Initialize Express server and session
@@ -28,19 +26,9 @@ app.get('/api/mappings/list', mappings.showAllUrls);
 app.post('/api/mappings', mappings.createUrl);
 
 // Auth with Google
-app.get('/login', function (req, res, next) {
-  var oauth2Client = new OAuth2( creds.clientId
-                               , creds.clientSecret
-                               , 'http://localhost:2008/googleauth');
-
-});
-
-
-app.get('/googleauth', function (req, res, next) {
-  console.log('--------------------');
-  console.log(req.query);
-  return res.json({ yeah: 'done' });
-});
+app.get('/login', login.initialRequest);
+app.get('/googleauth', login.returnFromGoogle);
+app.get('/logout', login.logout);
 
 
 // Web interface
