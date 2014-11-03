@@ -5,5 +5,11 @@ block head
 
 block content
   h1 All active mappings
+  br
+  br
 
-  
+  ul
+    each val in mappings
+      li= val.from + ' -> ' + val.to
+
+

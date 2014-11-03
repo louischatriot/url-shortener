@@ -35,12 +35,19 @@ app.get('/logout', login.logout);
 webapp.use(middlewares.mustBeLoggedIn);
 webapp.use(middlewares.addPageName);
 webapp.get('/create', function (req, res) {
-  res.render('create-mapping.jade', { youAreUsingJade: true });
+  res.render('create-mapping.jade');
 });
-webapp.get('/list', function (req, res) {
-  res.render('list.jade', { youAreUsingJade: true });
-});
+webapp.get('/list', mappings.showAllUrls);
 app.use('/web', webapp);
+
+// Root. Descriptive main page if not logged, main action (create a mapping) if logged
+app.get('/', function (req, res) {
+  if (req.session.user) {
+    return res.redirect(302, '/web/create');
+  } else {
+    return res.render('main.jade');
+  }
+});
 
 // Serve static client-side js and css (should really be done through Nginx but at this scale we don't care)
 app.get('/assets/*', function (req, res) {

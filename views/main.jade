@@ -6,22 +6,13 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     link(href="/assets/lib/bootstrap/css/bootstrap.min.css", rel="stylesheet")
     link(href="/assets/css/layout.css", rel="stylesheet")
+    title Login to LM url shortener
 
-    block head
-
+  // Should not create a separate layout for this single page but no need to refactor as long as we don't need to work on design (that is, never)
   body
     nav(class="navbar navbar-inverse navbar-fixed-top", role="navigation")
       div.container
         div#navbar(class="collapse navbar-collapse")
           ul(class="nav navbar-nav")
-            li(class=create ? 'active' : '')
-              a(href="/web/create") Create new mapping
-            li(class=list ? 'active' : '')
-              a(href="/web/list") See all mappings
             li
-              a(href="/logout") Logout
-
-    block content
-
-    script(type="text/javascript", src="/assets/lib/jquery/jquery-1.11.1.min.js")
-    block specificJs
+              a(href="/login") Login
