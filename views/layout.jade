@@ -21,6 +21,10 @@ html(lang="en")
             li
               a(href="/logout") Logout
 
+          ul(class="nav navbar-nav navbar-right")
+            li
+              a= username
+
     block content
 
     script(type="text/javascript", src="/assets/lib/jquery/jquery-1.11.1.min.js")
