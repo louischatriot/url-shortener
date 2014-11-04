@@ -6,12 +6,14 @@ block head
 block content
   h1 Create a new mapping
 
+  div.alert.alert-danger#feedback(style='display: none;')
+
   form
-    | From:&nbsp;
+    | Name: 
     input#from(type="text")
     br
     br
-    | To:&nbsp;
+    | To: 
     input#to(type="text")
     br
     br

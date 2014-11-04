@@ -14,9 +14,23 @@ $('#create-mapping').on('click', function (event) {
          , contentType: 'application/json'
          , complete: function (jqXHR) {
             if (jqXHR.status === 200) {
-              // TODO
+              window.location = '/web/view/' + from;
             } else {
-              // TODO
+              var message = '';
+              console.log(jqXHR.responseJSON);
+
+              if (jqXHR.responseJSON && jqXHR.responseJSON.messages) {
+                message += '<ul>';
+                jqXHR.responseJSON.messages.forEach(function (msg) {
+                  message += '<li>' + msg + '</li>';
+                });
+                message += '</ul>';
+              } else {
+                message = 'Unknown error, please raise a bug';
+              }
+
+              $('#feedback').html(message);
+              $('#feedback').css('display', 'block');
             }
          }
        });

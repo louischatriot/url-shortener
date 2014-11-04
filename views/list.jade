@@ -10,6 +10,7 @@ block content
 
   ul
     each val in mappings
-      li= val.from + ' -> ' + val.to
+      li
+        a(href='/web/view/'+val.from) #{val.from} -> #{val.to}
 
 

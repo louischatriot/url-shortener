@@ -22,6 +22,7 @@ app.use(session({ secret: 'eropcwnjdi'
 
 
 // API
+// TODO: protect the endpoints from unlogged usage
 app.get('/api/mappings/list', mappings.showAllUrls);
 app.post('/api/mappings', mappings.createUrl);
 
@@ -38,6 +39,7 @@ webapp.get('/create', function (req, res) {
   res.render('create-mapping.jade');
 });
 webapp.get('/list', mappings.showAllUrls);
+webapp.get('/view/:from', mappings.viewMapping);
 app.use('/web', webapp);
 
 // Root. Descriptive main page if not logged, main action (create a mapping) if logged

@@ -1,0 +1,11 @@
+extends layout
+
+block head
+  title View mapping #{mapping.from}
+
+block content
+  h1 Mapping #{mapping.from}
+
+  ul
+    li Redirects to 
+      a(href=mapping.to, target='_blank') #{mapping.to}
