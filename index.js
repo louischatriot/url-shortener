@@ -27,6 +27,7 @@ api.use(middlewares.apiMustBeLoggedIn);
 api.post('/mappings', mappings.createUrl);
 app.use('/api', api);
 
+
 // Auth with Google
 app.get('/login', login.initialRequest);
 app.get('/googleauth', login.returnFromGoogle);
@@ -43,6 +44,7 @@ webapp.get('/list', mappings.showAllMappings);
 webapp.get('/view/:from', mappings.viewMapping);
 app.use('/web', webapp);
 
+
 // Root. Descriptive main page if not logged, main action (create a mapping) if logged
 app.get('/', function (req, res) {
   if (req.session.user) {
@@ -52,13 +54,17 @@ app.get('/', function (req, res) {
   }
 });
 
+
 // Serve static client-side js and css (should really be done through Nginx but at this scale we don't care)
 app.get('/assets/*', function (req, res) {
   res.sendFile(process.cwd() + req.url);
 });
 
+
 // Actual redirections
 app.get('/:from', mappings.redirect);
+
+
 
 // Last wall of defense against a bad crash
 process.on('uncaughtException', function (err) {
