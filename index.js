@@ -24,7 +24,7 @@ app.use(session({ secret: 'eropcwnjdi'
 
 // API
 api.use(middlewares.apiMustBeLoggedIn);
-api.post('/mappings', mappings.createUrl);
+api.post('/mappings', mappings.createMapping);
 app.use('/api', api);
 
 

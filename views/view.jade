@@ -11,3 +11,7 @@ block content
       strong #{host}/#{mapping.from}
     li Redirects to 
       a(href=mapping.to, target='_blank') #{mapping.to}
+    // That's an ugly to do it but it works and no time to do better
+    li Created by #{mapping.creator} on #{mapping.createdAt.toDateString()} at #{mapping.createdAt.toTimeString().match(/[^ ]+/g)[0]} (#{mapping.createdAt.toTimeString().match(/[^ ]+/g)[1]})
+    li Clicks: #{mapping.clicks}
+
