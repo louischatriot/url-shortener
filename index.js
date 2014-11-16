@@ -8,6 +8,7 @@ var express = require('express')
   , session = require('express-session')
   , middlewares = require('./lib/middlewares')
   , webapp = express.Router()
+  , api = express.Router()
   , login = require('./lib/login')
   ;
 
@@ -22,9 +23,9 @@ app.use(session({ secret: 'eropcwnjdi'
 
 
 // API
-// TODO: protect the endpoints from unlogged usage
-app.get('/api/mappings/list', mappings.showAllUrls);
-app.post('/api/mappings', mappings.createUrl);
+api.use(middlewares.apiMustBeLoggedIn);
+api.post('/mappings', mappings.createUrl);
+app.use('/api', api);
 
 // Auth with Google
 app.get('/login', login.initialRequest);
@@ -34,11 +35,11 @@ app.get('/logout', login.logout);
 
 // Web interface
 webapp.use(middlewares.mustBeLoggedIn);
-webapp.use(middlewares.addPageName);
+webapp.use(middlewares.addCommonLocals);
 webapp.get('/create', function (req, res) {
   res.render('create-mapping.jade');
 });
-webapp.get('/list', mappings.showAllUrls);
+webapp.get('/list', mappings.showAllMappings);
 webapp.get('/view/:from', mappings.viewMapping);
 app.use('/web', webapp);
 
